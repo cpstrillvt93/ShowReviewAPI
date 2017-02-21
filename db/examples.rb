@@ -17,3 +17,14 @@
 #                password: 'abc123',
 #                password_confirmation: nil)
 # end
+#
+# %w(dise hob orpheum).each do |venue|
+#   venue = "#{venue}"
+#   next if Show.exists? venue: venue
+#   Show.create!(date: '1993-01-01',
+#                band: 'Cheese',
+#                venue: 'hob',
+#                location: 'location',
+#                rating: 'rating',
+#                notes: 'blah')
+# end

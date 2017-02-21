@@ -1,4 +1,4 @@
-class ShowsController < ApplicationController
+class ShowsController < OpenReadController
   before_action :set_show, only: [:show, :update, :destroy]
 
   # GET /shows
@@ -15,7 +15,8 @@ class ShowsController < ApplicationController
 
   # POST /shows
   def create
-    @show = Show.new(show_params)
+
+    @show = current_user.shows.build(show_params)
 
     if @show.save
       render json: @show, status: :created, location: @show
@@ -36,16 +37,19 @@ class ShowsController < ApplicationController
   # DELETE /shows/1
   def destroy
     @show.destroy
+
+    render json: @show
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_show
-      @show = Show.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_show
+    @show = current_user.shows.find(params[:id])
+  end
+  private :set_show
 
-    # Only allow a trusted parameter "white list" through.
-    def show_params
-      params.require(:show).permit(:date, :band, :venue, :location, :rating, :notes)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def show_params
+    params.require(:show).permit(:date, :band, :venue, :location, :rating, :notes)
+  end
+  private :show_params
 end

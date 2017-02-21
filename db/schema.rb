@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 20170217200144) do
     t.text     "location",   null: false
     t.float    "rating"
     t.text     "notes"
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shows_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +47,5 @@ ActiveRecord::Schema.define(version: 20170217200144) do
   end
 
   add_foreign_key "examples", "users"
+  add_foreign_key "shows", "users"
 end
