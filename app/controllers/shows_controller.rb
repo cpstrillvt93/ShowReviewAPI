@@ -3,19 +3,19 @@ class ShowsController < OpenReadController
 
   # GET /shows
   def index
-    @shows = Show.all
+    @shows = current_user.shows.all
 
     render json: @shows
   end
 
   # GET /shows/1
   def show
+    # @show = current_user.shows.find.all
     render json: @show
   end
 
   # POST /shows
   def create
-
     @show = current_user.shows.build(show_params)
 
     if @show.save

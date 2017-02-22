@@ -7,7 +7,7 @@ class CreateShows < ActiveRecord::Migration[5.0]
       t.text :location, null: false
       t.float :rating
       t.text :notes
-      # t.references :user, index: true, foreign_key: true, null: false
+      t.references :user, index: true, foreign_key: true, null: false
 
       t.timestamps
     end
